@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<div align="center">
+		<br />
+		<h:outputText value="Modifier un rendezVous"
+			styleClass="contentsTitle"></h:outputText>
+		<br /> <br />
+		<h:form>
+			<h:panelGrid columns="2">
+          L'id :
+          <h:outputText id="id"
+					value="#{rendezVousController.rendezVous.id}" required="true" />
+         la date  :
+	     <h:inputText id="date"
+					value="#{rendezVousController.rendezVous.date}" required="true"
+					requiredMessage="La date ne doit pas être vide"
+					validatorMessage="La date doit être au format 'yyyy-MM-dd'">
+					<f:validateRegex pattern="\d{4}-\d{2}-\d{2}" />
+				</h:inputText> 
+         
+         l'heure :
+	     <h:inputText id="heure"
+					value="#{rendezVousController.rendezVous.heure}" required="true"
+					requiredMessage="L heure ne doit pas être vide"
+					validatorMessage="L heure doit être au format HH:MM:SS">
+					<f:validateRegex
+						pattern="^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" />
+				</h:inputText>
+		 
+		 le patient:
+		 
+		 <h:selectOneMenu value="#{rendezVousController.rendezVous.patient}">
+					<f:selectItems value="#{rendezVousController.listPatients()}"
+						var="patient" itemLabel="#{patient.nom}" itemValue="#{patient}" />
+				</h:selectOneMenu>
+		 
+		 le medecin:
+		 
+		 <h:selectOneMenu value="#{rendezVousController.rendezVous.medecin}">
+					<f:selectItems value="#{rendezVousController.listMedecins()}"
+						var="medecin" itemLabel="#{medecin.nom}" itemValue="#{medecin}" />
+				</h:selectOneMenu>
+		 
+		 le rapport de la consultation:
+		 
+		 <h:selectOneMenu
+					value="#{rendezVousController.rendezVous.consultation}">
+					<f:selectItems
+						value="#{rendezVousAddController.listConsultations()}"
+						var="consultation" itemLabel="#{consultation.rapport}"
+						itemValue="#{consultation}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+
+
+			<div align="center">
+				<h:message for="date" style="color:red" />
+				<br />
+				<h:message for="heure" style="color:red" />
+			</div>
+
+
+			<div align="center">
+				<h:commandButton value="Retour" styleClass="btn" immediate="true"
+					action="rendezVous" />
+				<h:commandButton value="Modifier" styleClass="btn"
+					action="#{rendezVousController.SaveUpdateRendezVous()}" />
+			</div>
+
+
+		</h:form>
+
+	</div>
+
+</ui:composition>

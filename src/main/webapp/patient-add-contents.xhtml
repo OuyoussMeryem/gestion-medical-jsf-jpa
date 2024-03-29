@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<div align="center">
+		<br />
+		<h:outputText value="Ajouter un patient" styleClass="contentsTitle"></h:outputText>
+		<br /> <br />
+		<h:form>
+			<h:panelGrid columns="2">
+ Saisir le nom;
+ <h:inputText id="nom" value="#{patientAddController.patient.nom}"
+					required="true" requiredMessage="Le nom ne doit pas vide" />
+ Saisir le email:
+ <h:inputText id="email" value="#{patientAddController.patient.email}"
+					required="true"
+					requiredMessage="L'adresse e-mail ne doit pas être vide"
+					validatorMessage="Le format de l'adresse e-mail n'est pas valide(par exemple, example@domaine.com).">
+					<f:validateRegex pattern="^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$" />
+				</h:inputText>
+			</h:panelGrid>
+			<div align="center">
+				<h:message for="nom" style="color:red" />
+				<br />
+				<h:message for="email" style="color:red" />
+			</div>
+			<div align="center">
+				<h:commandButton value="Retour" styleClass="btn" immediate="true"
+					action="patients" />
+				<h:commandButton value="Ajouter" styleClass="btn"
+					action="#{patientAddController.AddPatient()}" />
+			</div>
+
+
+		</h:form>
+
+	</div>
+
+</ui:composition>

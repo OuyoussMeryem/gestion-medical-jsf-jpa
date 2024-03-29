@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<div align="center">
+		<h:outputText value="JSF and JPA project" styleClass="headerTitle" />
+		<br />
+		<br />
+
+		<ul class="navbar">
+			<li><h:link value="Patient" outcome="patients" /></li>
+			<li><h:link value="Medecin" outcome="medecins" /></li>
+			<li><h:link value="RendezVous" outcome="rendezVous" /></li>
+			<li><h:link value="Consultation" outcome="consultations" /></li>
+		</ul>
+		<hr class="separator" />
+	</div>
+
+</ui:composition>

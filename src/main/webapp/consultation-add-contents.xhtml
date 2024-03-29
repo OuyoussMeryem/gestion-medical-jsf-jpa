@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<div align="center">
+		<br />
+		<h:outputText value="Ajouter une consultation"
+			styleClass="contentsTitle"></h:outputText>
+		<br /> <br />
+		<h:form>
+			<h:panelGrid columns="2">
+	      Saisir la date  :
+	     <h:inputText id="date"
+					value="#{consultationAddController.consultation.date}"
+					required="true"
+					requiredMessage="La date de naissance ne doit pas être vide"
+					validatorMessage="La date doit être au format 'yyyy-MM-dd'">
+					<f:validateRegex pattern="\d{4}-\d{2}-\d{2}" />
+				</h:inputText>
+		 Saisir le rapport:
+		<h:inputTextarea id="rapport"
+					value="#{consultationAddController.consultation.rapport}" rows="6"
+					cols="50" />
+		Saisir le prix:
+		<h:inputText id="prix"
+					value="#{consultationAddController.consultation.prix}"
+					required="true" requiredMessage="Prix ne doit pas rester vide" />
+
+			</h:panelGrid>
+			<div align="center">
+				<h:message for="date" style="color:red" />
+				<br />
+				<h:message for="rapport" style="color:red" />
+				<br />
+				<h:message for="prix" style="color:red" />
+			</div>
+			<div align="center">
+				<h:commandButton value="Retour" styleClass="btn" immediate="true"
+					action="consultations" />
+				<h:commandButton value="Ajouter" styleClass="btn"
+					action="#{consultationAddController.Addconsultation()}" />
+			</div>
+
+
+		</h:form>
+
+	</div>
+
+</ui:composition>

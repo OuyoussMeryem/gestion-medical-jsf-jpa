@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<div align="center">
+		<h:outputText value="Liste des patients" styleClass="contentsTitle"></h:outputText>
+		<h:form>
+			<br />
+			<h:dataTable value="#{patientController.findAllPatient()}"
+				var="patient" styleClass="table" headerClass="table-header"
+				footerClass="table-footer" rowClass="table-odd-row,table-even-row">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+ #{patient.id}
+ </h:column>
+				<h:column>
+					<f:facet name="header">Nom</f:facet>
+ #{patient.nom}
+ </h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+ #{patient.email}
+ </h:column>
+
+				<h:column>
+					<f:facet name="header">Modifier</f:facet>
+					<h:commandLink value="modifier" styleClass="btnMod"
+						action="#{patientController.ModifyPatient(patient)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Supprimer</f:facet>
+					<h:commandLink value="Supprimer" styleClass="btnSup"
+						action="#{patientController.deletePatient(patient)}" />
+				</h:column>
+
+				<f:facet name="footer">
+					<h:outputText
+						value="Le total des patients: #{patientController.findAllPatient().size()}" />
+				</f:facet>
+			</h:dataTable>
+			<br />
+			<br />
+
+			<h:commandButton styelClass="btn" value="Ajouter patient"
+				action="patient-add"></h:commandButton>
+
+
+		</h:form>
+	</div>
+
+
+</ui:composition>
